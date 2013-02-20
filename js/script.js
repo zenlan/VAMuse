@@ -7,6 +7,7 @@ function resetEverything() {
   $('#limit').val('10');
   $('#query').val('');
   $('#size').val('');
+  $('#recent').val('');
   $('#category').val('');
   $('#collection').val('');
 }
