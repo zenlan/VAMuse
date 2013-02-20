@@ -12,24 +12,35 @@
 body {
 /*  font-family: 'Marcellus', sans-serif;
   font-family: 'Playfair Display SC', serif;
-  font-family: 'Text Me One', sans-serif;*/
-/*  font-family: 'Julius Sans One', sans-serif;*/
+  font-family: 'Text Me One', sans-serif;
+  font-family: 'Julius Sans One', sans-serif;
+  font-family: 'Nunito', sans-serif;*/
   font-family: 'Raleway', sans-serif;
-/*  font-family: 'Nunito', sans-serif;*/
   color: #383934;
-  background:#E1DED9;
+  background: #E1DED9;
 }
 
+img {
+  border: 2px solid #383934;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 0px #F5F1EE;
+  -moz-boz-shadow: 1px 1px 0px #F5F1EE;
+  box-shadow:1px 1px 0px  #F5F1EE;
+}
 
 .banner {
   background: #D8D4D1;
-  color: #383934;
+/*  color: #383934;*/
   text-align: center;
   padding: 20px;
   width: auto;
-  border: 2px solid #383934;
-    border-radius: 10px;
+  border: 3px solid #383934;
+  border-radius: 10px;
   -webkit-border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 0px #F5F1EE;
+  -moz-boz-shadow: 1px 1px 0px #F5F1EE;
+  box-shadow:1px 1px 0px  #F5F1EE;
 }
 
 .tooltip {
@@ -48,6 +59,20 @@ body {
   display:none;
   position:relative;
   font-size: 12px;
+}
+
+.scrapbook {
+  background: #D8D4D1;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  width: auto;
+  border: 3px solid #383934;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 0px #F5F1EE;
+  -moz-boz-shadow: 1px 1px 0px #F5F1EE;
+  box-shadow:1px 1px 0px  #F5F1EE;
 }
 
 .isotope ul {
