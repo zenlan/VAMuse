@@ -321,14 +321,25 @@ try {
       search();
     });
 
-    $( "#trashcan" ).droppable({
-      drop: function( event, ui ) {
-        $('#' + ui.draggable[0].id).remove();
-        saveScrapbook();
-        showScrapbook();
-        $('div#scrapbook.isotope ul').isotope('reLayout');
+    var previousScroll = 0;
+    $(window).scroll(function(data) {
+      var currentScroll = $(this).scrollTop();
+      if (currentScroll > previousScroll){
+        if ($('#offset').val()>0) {
+          search();
+        }
       }
+      previousScroll = currentScroll;
     });
+
+//    $( "#trashcan" ).droppable({
+//      drop: function( event, ui ) {
+//        $('#' + ui.draggable[0].id).remove();
+//        saveScrapbook();
+//        showScrapbook();
+//        $('div#scrapbook.isotope ul').isotope('reLayout');
+//      }
+//    });
   });
 
 } catch (error) {
