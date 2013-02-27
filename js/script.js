@@ -411,14 +411,13 @@ function vamData(data) {
 function search() {
   var limit = 20;
   var offset = $('#offset').val();
-  var qry = '';
-  qry = $('#query').val();
+  var qry = $('#query').val();
   var cat = '';
-  if ($('#category').val() != '') {
+  if ($('#category').val() !== '') {
     cat = '&category=' + $('#category').val();
   }
   var col = '';
-  if ($('#category').val() != '') {
+  if ($('#collection').val() !== '') {
     col = '&collection=' + $('#collection').val();
   }
   $('#offset').val(parseInt(limit) + parseInt(offset));
