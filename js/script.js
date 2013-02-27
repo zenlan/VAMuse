@@ -342,6 +342,7 @@ function handleScrapbookItem($this) {
     $('div#object button#remove').attr('objID', $(this).attr('id'));
     $('div#object button#remove')
     .button()
+    .text('Delete')
     .click(function() {
       $('#object').css('display', 'none');
       $('div#scrapbook.isotope ul').isotope('remove', $('#' + $(this).attr('objID')),
