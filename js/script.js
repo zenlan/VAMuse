@@ -1,6 +1,14 @@
 
 /* MISC FUNCTIONS */
 
+function initBaseURLS() {
+  $.BaseURLS = {};
+  $.BaseURLS.urlAPI = 'http://www.vam.ac.uk/api/json/museumobject/';
+  $.BaseURLS.urlObj = 'http://www.vam.ac.uk/api/json/museumobject/';
+  $.BaseURLS.urlImg = 'http://media.vam.ac.uk/media/thira/collection_images/';
+  $.BaseURLS.urlExt = 'http://collections.vam.ac.uk/item/';
+}
+
 function scrollToElement(element, time, verticalOffset) {
   time = typeof(time) != 'undefined' ? time : 1000;
   verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
@@ -27,19 +35,6 @@ function initInfiniteScroll() {
       }
     }
     previousScroll = currentScroll;
-  //      if (!!$('#form').offset()) {
-  //        var stickyTop = $('#form').offset().top;
-  //        var windowTop = $(this).scrollTop();
-  //        if ($('#form').offset().top < $(this).scrollTop()){
-  //          $('#form').css({
-  //            position: 'fixed',
-  //            top: 0
-  //          });
-  //        }
-  //        else {
-  //          $('#form').css('position','static');
-  //        }
-  //      }
   });
 }
 
@@ -143,17 +138,6 @@ function removeFromLibrary(scrapbookname){
     }
   }
 }
-
-//function storeLibrary(scrapbookname){
-//  if(typeof(Storage) !== 'undefined') {
-//    var domain = window.location.hostname;
-//    var library = getLibrary();
-//    if ($.inArray(scrapbookname, library) == -1) {
-//      library.push(scrapbookname);
-//      localStorage.setItem(domain + ':library', JSON.stringify(library));
-//    }
-//  }
-//}
 
 /* ISOTOPE FUNCTIONS */
 
@@ -275,7 +259,7 @@ function deleteScrapbook() {
 
 function fetchObject(id) {
   var ajax = $.ajax ({
-    url: 'http://www.vam.ac.uk/api/json/museumobject/' + id,
+    url: $.BaseURLS.urlAPI + id,
     type: 'GET',
     dataType: 'jsonp',
     cache: false,
@@ -290,8 +274,7 @@ function fetchObject(id) {
 }
 
 function vamImage(id, suffix) {
-  return 'http://media.vam.ac.uk/media/thira/collection_images/'
-  + id.substr(0,6) + '/' + id + suffix;
+  return $.BaseURLS.urlImg + id.substr(0,6) + '/' + id + suffix;
 }
 
 function vamCaption(item) {
@@ -306,15 +289,11 @@ function vamCaption(item) {
   return caption;
 }
 
-function vamURL(id, slug) {
-  return 'http://collections.vam.ac.uk/item/' + id + '/' + slug;
-}
-
 function vamObject(data) {
   if (data.length == 1) {
     var item = data[0];
     var title = vamCaption(item);
-    var url = vamURL(item.fields.object_number, item.fields.slug);
+    var url = $.BaseURLS.urlExt + item.fields.object_number + '/' + item.fields.slug;
     var img = vamImage(item.fields.primary_image_id, '_jpg_o.jpg');
     var elem = '<li class="iso'
     + '" id="' + item.fields.object_number
@@ -423,7 +402,8 @@ function search() {
   $('#offset').val(parseInt(limit) + parseInt(offset));
   saveQuery(qry);
   buildRecentQueriesDatalist(qry);
-  var url = 'http://www.vam.ac.uk/api/json/museumobject/search?images=1'
+  var url = $.BaseURLS.urlAPI
+  + 'search?images=1'
   + '&limit=' + limit
   + '&offset=' + offset
   + '&q=' + qry + cat + col;
@@ -445,11 +425,22 @@ function search() {
 try {
   jQuery(document).ready(function($) {
 
+    initBaseURLS();
     initIsotope($('div#results.isotope ul'));
     initIsotope($('div#scrapbook.isotope ul'));
 
     if(typeof(Storage) == 'undefined') {
       alert('No browser storage, some features will not work');
+    }
+
+//    $.browser = {};
+//    $.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
+//    $.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+//    $.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+//    $.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+    var msie = /msie/.test(navigator.userAgent.toLowerCase());
+    if (msie == true) {
+      alert('Internet Explorer is not supported. Best viewed in Chrome or Firefox.');
     }
 
     buildRecentQueriesDatalist();
