@@ -9,6 +9,33 @@ function initBaseURLS() {
   $.BaseURLS.urlExt = 'http://collections.vam.ac.uk/item/';
 }
 
+function handleHash() {
+  var hash = document.location.hash;
+  if (hash) {
+    var qry = sanitizeText(hash.substr(1));
+    if (qry == 'close') {
+      document.location.hash = '';
+    }
+    else {
+      $('#query').val(qry);
+      $('#search').click();
+    }
+  }
+}
+
+function sanitizeText(string) {
+  var result = string;
+  var tmp1 = $(result).text();
+  if (tmp1 != '') {
+    result = tmp1;
+  }
+  var tmp2 = html_sanitize(result);
+  if (tmp2 != '') {
+    result = tmp2;
+  }
+  return result;
+}
+
 function scrollToElement(element, time, verticalOffset) {
   time = typeof(time) != 'undefined' ? time : 1000;
   verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
@@ -44,6 +71,7 @@ function resetEverything() {
   $('#query').val('');
   $('#category').val('');
   $('#collection').val('');
+  document.location.hash = '';
 }
 
 function emptyScrapbook() {
@@ -172,11 +200,11 @@ function initIsotope($container) {
     itemSelector : '.iso',
     layoutMode: 'masonry',
     masonry: {
-//      columnWidth : 70,
-//      cornerStampSelector: '.corner-stamp'
-    }
+  //      columnWidth : 70,
+  //      cornerStampSelector: '.corner-stamp'
+  }
   });
-  //initMasonry();
+//initMasonry();
 }
 
 function resetIsotope($container) {
@@ -433,11 +461,11 @@ try {
       alert('No browser storage, some features will not work');
     }
 
-//    $.browser = {};
-//    $.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
-//    $.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
-//    $.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
-//    $.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+    //    $.browser = {};
+    //    $.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
+    //    $.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+    //    $.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+    //    $.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
     var msie = /msie/.test(navigator.userAgent.toLowerCase());
     if (msie == true) {
       alert('Internet Explorer is not supported. Best viewed in Chrome or Firefox.');
@@ -485,6 +513,12 @@ try {
     $('#search').click(function(){
       search();
     });
+
+    $('#close').click(function(){
+      $('#object').css('display', 'none');
+    });
+
+    handleHash();
 
   });
 
