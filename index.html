@@ -1,154 +1,87 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-    <meta name="keywords" content="Victoria & Albert Museum, search, jQuery">
-    <meta name="description" content="A small doodle using the V&A Solr API, some jQuery, a few HMTL5/CSS3 tricks and Isotope">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="http://isotope.metafizzy.co/jquery.isotope.min.js"></script>
-    <script src="http://caja.appspot.com/html-css-sanitizer-minified.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
-    <link rel='stylesheet' href='css/lightbox.css' />
-    <link rel='stylesheet' href='css/isotope.css' />
-    <link rel='stylesheet' href='css/style.css' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>V&A Museum</title>
+    <style>
+      ul#results li {
+        display:inline;
+      }
+    </style>
   </head>
-  <body>
-    <datalist id="recent"></datalist>
-    <div>
-      <div class="banner container clearfix">
-        <div class="title left clearfix"><h2 class="textshadow">Victoria & Albert Museum Collections</h2></div>
-        <div class="form right clearfix">
-          <p>
-            <label for="collection">Collection</label>
-            <select id="collection">
-              <option value=""></option>
-              <option value="1">Prints, Drawings and Paintings Collection</option>
-              <option value="2">Far Eastern Collection</option>
-              <option value="3">Ceramics Collection</option>
-              <option value="4">Middle East Collection</option>
-              <option value="5">Museum of Childhood</option>
-              <option value="6">Furniture and Woodwork Collection</option>
-              <option value="7">Metalwork Collection</option>
-              <option value="8">Textiles and Fashion Collection</option>
-              <option value="9">Sculpture Collection</option>
-              <option value="10">Theatre & Performance Collection</option>
-              <option value="11">South and South East Asian Collection</option>
-              <option value="12">Archive of Art & Design</option>
-            </select>
-          </p>
-          <p>
+  <body class="bg-light">
+    <div class="container">
+      <div class="col-md-12 order-md-1 my-3">
+        <div class="row">
+          <h2 class="text-muted">V&A Museum</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-6 order-md-1 my-3">
             <label for="category">Category</label>
-            <select id="category">
-              <option value=""></option>
-              <optgroup label="--">
-                <option value="3">Containers</option>
-                <option value="5">Ceramics</option>
-                <option value="55">Earthenware</option>
+            <div class="input-group">
+              <select id="category" class="form-control">
+                <option value=""></option>
+                <!--<optgroup label="--">-->
                 <option value="98">Food vessels and Tableware</option>
-                <option value="15">Drinking</option>
-                <option value="42">Interiors</option>
-                <option value="16">Metalwork</option>
-                <option value="53">Jewelry</option>
                 <option value="88">Tableware & Cutlery</option>
-                <option value="7">Tea, Coffee & Chocolate wares</option>
                 <option value="48">Wall coverings</option>
-                <option value="41">Stained Glass</option>
-              </optgroup>
-              <optgroup label="--">
-                <option value="17">Portraits</option>
-                <option value="44">Paintings</option>
-                <option value="20">Prints</option>
-                <option value="22">Archaeology</option>
-                <option value="36">Drawings</option>
-                <option value="39">Design</option>
+                <!--                </optgroup>
+                                <optgroup label="--">-->
                 <option value="58">Death</option>
                 <option value="26">Religion</option>
                 <option value="27">Christianity</option>
-                <option value="45">Photographs</option>
                 <option value="25">Entertainment & Leisure</option>
-              </optgroup>
-              <optgroup label="--">
+                <!--                </optgroup>
+                                <optgroup label="--">-->
                 <option value="28">Clothing</option>
                 <option value="118">Day wear</option>
-                <option value="66">Evening wear</option>
-                <option value="50">Embroidery</option>
                 <option value="1535">Women's clothes</option>
-                <option value="60">Fashion</option>
-                <option value="23">Textiles</option>
                 <option value="74">Hats & Headwear</option>
                 <option value="70">Accessories</option>
-              </optgroup>
-            </select>
-          </p>
-          <p>
-            <label for="search">Keywords</label>
-            <input id="query" value="" type="text" list="recent" size="32"/>
-          </p>
-          <p>
-            <!--          <label for="limit">Limit</label>
-                      <select id="limit">
-                        <option value="10">10</option>
-                        <option value="20" selected>20</option>
-                        <option value="30">30</option>
-                        <option value="40">40</option>
-                      </select>
-                      <label for="size">Image size</label>
-                      <select id="size">
-                        <option value="_jpg_s.jpg">70px square crop</option>
-                        <option value="_jpg_o.jpg">130px square crop</option>
-                        <option value="_jpg_ws.jpg" selected>177px square crop</option>
-                        <option value="_jpg_w.jpg">265px square crop</option>
-                        <option value="_jpg_ds.jpg">355px square fit</option>
-                        <option value="_jpg_l.jpg">768x600px best fit</option>
-                        <option value=".jpg">768px (max) longest axis</option>
-                      </select>-->
-            <!--          <input id="shuffle" type="submit" value="Shuffle"/>-->
-          </p>
+                <!--</optgroup>-->
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 order-md-2 my-3">
+            <label for="keywords">Keywords</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="keywords" name="keywords" value="" placeholder="">
+            </div>
+          </div>
         </div>
-        <div class="library clearfix">
-          <div><label for="infinite">Infinite Scroll?</label>
-            <input id="infinite" type="checkbox" value="1" checked/></div>
-          <div><button id="reset" class="button">Reset</button></div>
-          <div><button id="search" class="button">Fetch</button></div>
-          <div><a href="#scrapbooks" class="openModal button">Scrapbooks</a></div>
-          <input id="offset" type="hidden" value="0"/>
-          <input id="size" type="hidden" value="o"/>
+        <div class="row">
+          <div class="col-md-6 order-md-1 my-3">
+            <button class="btn btn-primary btn-lg btn-block" id="search" name="Search" type="submit"><span class="underline">S</span>earch</button>
+          </div>
+          <div class="col-md-6 order-md-2 my-3">
+            <button class="btn btn-lg btn-block" id="reset" name="Reset" type="submit"><span class="underline">R</span>eset</button>
+          </div>
         </div>
-      </div>
-      <div id="results" class="isotope clearfix">
-        <ul></ul>
+        <div class="row">
+          <div class="col-md-12 order-md-1">
+            <div class="my-3">
+              <ul id="results"></ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <aside id="scrapbooks" class="modal">
-      <div>
-        <h3 class="title textshadow">Scrapbooks</h3>
-        <p>
-          <label for="library">Select</label>
-          <select id="library">
-            <option value="default">Default</option>
-          </select>
-          <label for="new">New</label>
-          <input id="new" type="text" value=""/>
-        </p>
-        <p>
-          <button id="save">Save</button>
-          <button id="empty">Empty</button>
-          <button id="delete">Delete</button>
-        </p>
-        <a href="#close" id="close" title="Close">Close</a>
-        <div id="object" title="Object Details" class="container">
-          <p><span id="title">Title</span></p>
-          <p><img src="#"/></p>
-          <p><a class="button" href="" target="_blank">View V&A page</a>
-          <button id="remove" class="button">Delete</button></p>
-        </div>
-        <div id="scrapbook" class="isotope">
-          <ul></ul>
-        </div>
-      </div>
-    </aside>
+    <script src="solrq.js"></script>
+    <script>
+
+      document.addEventListener(`DOMContentLoaded`, async () => {
+
+        const oSolrQ = new SolrQ({});
+
+        const search = window.location.search.trim();
+        if (search) {
+          oSolrQ.doSearch(null, null, search.replace('?', ``));
+        }
+
+      }, false);
+
+    </script>
   </body>
 </html>
